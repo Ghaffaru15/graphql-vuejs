@@ -7,6 +7,8 @@
         {{ user.name }}
       </li>
     </ul>
+
+    <button @click="createUser">Create User</button>
   </div>
 </template>
 
@@ -32,6 +34,18 @@ export default {
         email
       }
     }`
+  },
+  methods: {
+    createUser() {
+      this.$apollo.mutate({
+        mutation: gql`mutation {
+          createUser(name: "Nafi",email: "nafisa@gmail.com",password: "password") {
+            name
+            email
+          }
+        }`
+      })
+    }
   }
 }
 </script>
